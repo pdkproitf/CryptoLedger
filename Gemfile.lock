@@ -111,6 +111,7 @@ GEM
     nio4r (2.5.9)
     nokogiri (1.15.4-arm64-darwin)
       racc (~> 1.4)
+    pg (1.6.2-arm64-darwin)
     puma (5.6.7)
       nio4r (~> 2.0)
     racc (1.7.1)
@@ -165,7 +166,6 @@ GEM
       rspec-mocks (~> 3.12)
       rspec-support (~> 3.12)
     rspec-support (3.12.1)
-    sqlite3 (1.6.3-arm64-darwin)
     thor (1.2.2)
     timeout (0.4.0)
     tzinfo (2.0.6)
@@ -182,10 +182,10 @@ PLATFORMS
 DEPENDENCIES
   debug
   factory_bot_rails
+  pg
   puma (~> 5.0)
   rails (~> 7.0.7, >= 7.0.7.2)
   rspec-rails
-  sqlite3 (~> 1.4)
   tzinfo-data
 
 RUBY VERSION
