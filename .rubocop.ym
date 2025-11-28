@@ -1,0 +1,30 @@
+# Require RuboCop extensions (if any)
+require:
+  - rubocop-rails
+  - rubocop-rspec
+
+AllCops:
+  # Exclude common generated files or external libraries
+  Exclude:
+    - 'db/schema.rb'
+    - 'vendor/**/*'
+  # Enable new cops by default (or set to false if you prefer to enable them manually)
+  NewCops: enable
+  # Specify the target Ruby version
+  TargetRubyVersion: 3.2
+
+# Configure specific cops or departments
+Layout/LineLength:
+  Max: 120
+  Exclude:
+    - 'spec/**/*' # Exclude spec files from line length check
+
+Metrics/MethodLength:
+  Max: 15
+
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
+
+# Disable a specific cop
+Style/FrozenStringLiteralComment:
+  Enabled: false
