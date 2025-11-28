@@ -15,17 +15,14 @@
 # updated_at       :datetime         not null
 
 class Transaction < ApplicationRecord
+  include Transactions::Scopes
+
   belongs_to :user
   belongs_to :from_account, class_name: 'Account', optional: true
   belongs_to :to_account, class_name: 'Account', optional: true
 
-  enum transaction_type: {
-    buy: 'buy',
-    sell: 'sell',
-    deposit: 'deposit',
-    withdrawal: 'withdrawal',
-    trade: 'trade'
-  }
+  enum transaction_type: Transactions::Scopes::TRANSACTION_TYPES
 
-  validates :transaction_type, presence: true, inclusion: { in: transaction_types.values }
+  validates :transaction_type, presence: true, inclusion: { in: TRANSACTION_TYPES.values }
+  validate_presence_of :user_id, :amount, :exchange_rate
 end
