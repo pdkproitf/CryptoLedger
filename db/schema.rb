@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_23_055134) do
+ActiveRecord::Schema[7.0].define(version: 2025_11_28_132124) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,6 +22,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_23_055134) do
     t.index ["user_id"], name: "index_accounts_on_user_id"
   end
 
+  create_table "transactions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "transaction_type", null: false
+    t.bigint "from_account_id"
+    t.bigint "to_account_id"
+    t.decimal "amount", precision: 20, scale: 8, null: false
+    t.decimal "exchange_rate", precision: 20, scale: 8
+    t.string "transaction_hash"
+    t.text "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["from_account_id"], name: "index_transactions_on_from_account_id"
+    t.index ["to_account_id"], name: "index_transactions_on_to_account_id"
+    t.index ["user_id"], name: "index_transactions_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.datetime "created_at", null: false
@@ -30,4 +46,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_23_055134) do
   end
 
   add_foreign_key "accounts", "users"
+  add_foreign_key "transactions", "accounts", column: "from_account_id"
+  add_foreign_key "transactions", "accounts", column: "to_account_id"
+  add_foreign_key "transactions", "users"
 end
