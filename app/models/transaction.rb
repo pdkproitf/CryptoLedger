@@ -24,5 +24,5 @@ class Transaction < ApplicationRecord
   enum transaction_type: Transactions::Scopes::TRANSACTION_TYPES
 
   validates :transaction_type, presence: true, inclusion: { in: TRANSACTION_TYPES.values }
-  validate_presence_of :user_id, :amount, :exchange_rate
+  validates_presence_of :user_id, :amount, :exchange_rate
 end
