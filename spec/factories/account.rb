@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :account do
-    currency { "USD" }
     user
+    currency { "BTC" }
   end
 end
