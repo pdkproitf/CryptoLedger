@@ -79,14 +79,31 @@ RSpec.describe 'TransactionsController', type: :request do
         expect(json_response['data']).to eq([])
       end
 
-      it 'filters transactions by transaction_type' do
-        get '/api/v1/transactions', params: { type: 'deposit' }, headers: { 'user-id' => user.id }
+      context 'when filtering by transaction_type' do
+        it 'filters transactions by transaction_type' do
+          get '/api/v1/transactions', params: { filters: { type: 'deposit' } }, headers: { 'user-id' => user.id }
 
-        json_response = JSON.parse(response.body)
-        expect(json_response['data'].size).to eq(1)
+          json_response = JSON.parse(response.body)
+          expect(json_response['data'].size).to eq(1)
 
-        transaction_types = json_response['data'].map { |d| d['attributes']['transaction-type'] }.uniq
-        expect(transaction_types).to eq(['deposit'])
+          transaction_types = json_response['data'].map { |d| d['attributes']['transaction-type'] }.uniq
+          expect(transaction_types).to eq(['deposit'])
+        end
+      end
+
+      context 'when filtering by currency' do
+        it 'filters transactions by currency' do
+          get '/api/v1/transactions', params: { filters: { currency: 'BTC' } }, headers: { 'user-id' => user.id }
+
+          json_response = JSON.parse(response.body)
+          expect(json_response['data'].size).to eq(1)
+
+          json_response['data'].each do |transaction_json|
+            from_currency = transaction_json['attributes']['from-currency']
+            to_currency = transaction_json['attributes']['to-currency']
+            expect([from_currency, to_currency]).to include('BTC')
+          end
+        end
       end
     end
 

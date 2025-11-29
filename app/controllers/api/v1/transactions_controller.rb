@@ -5,10 +5,16 @@ class Api::V1::TransactionsController < ApplicationController
 
   # TODO: Implement pagination
   def index
-    transactions = current_user.transactions
-    transactions = filter_by_type(transactions) if transaction_type_filter.present?
+    result = Transactions::FilterService.new(
+      current_user,
+      filter_params
+    ).call
 
-    render json: transactions, each_serializer: TransactionSerializer, status: :ok
+    if result.success?
+      render json: result.data, each_serializer: TransactionSerializer, status: :ok
+    else
+      render json: build_error_json(message: result.errors), status: :unprocessable_entity
+    end
   end
 
   def create
@@ -23,12 +29,12 @@ class Api::V1::TransactionsController < ApplicationController
 
   private
 
-  def filter_by_type(transactions)
-    transactions.where(transaction_type: transaction_type_filter)
-  end
-
-  def transaction_type_filter
-    @transaction_type_filter ||= params[:type]&.split(',')&.map(&:strip)
+  def filter_params
+    params[:filters] ||= {}
+    {
+      type: params[:filters][:type],
+      currency: params[:filters][:currency]
+    }
   end
 
   def transaction_params
