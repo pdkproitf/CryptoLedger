@@ -20,6 +20,8 @@ module Factories
       else
         ServiceResult.new(errors: transaction.errors.full_messages)
       end
+    rescue ArgumentError => e
+      ServiceResult.new(errors: [e.message])
     end
 
     private
