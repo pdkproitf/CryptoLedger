@@ -8,14 +8,14 @@ class TransactionsController < ApplicationController
     transactions = current_user.transactions
     transactions = filter_by_type(transactions) if transaction_type_filter.present?
 
-    render json: build_success_json(data: transactions), status: :ok
+    render json: transactions, each_serializer: TransactionSerializer, status: :ok
   end
 
   def create
     result = Factories::CreateTransaction.new(current_user, transaction_params).call
 
     if result.success?
-      render json: build_success_json(data: result.data), status: :created
+      render json: result.data, serializer: TransactionSerializer, status: :created
     else
       render json: build_error_json(message: result.errors), status: :unprocessable_entity
     end
