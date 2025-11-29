@@ -48,17 +48,9 @@ Endpoints:
 	 - Business logic delegated to `Factories::CreateTransaction` (validations & atomic creation).
 	 - Returns serialized transaction or standardized error payload.
 
-
-### Error Handling Strategy
-- Return consistent structure; no mixing ad-hoc keys.
-- Use 4xx for client issues (422 for validation, 404 for not found, 401 for auth, 403 for forbidden) and 5xx for server faults.
-
-### Account: Potential Helpful Columns / Enhancements
-- Account `status` enum (active, closed, locked) — already implemented.
-- Account `kind` (user vs system) for internal float or treasury accounts.
-- Transaction `reference` or `external_id` for reconciliation with crypto transaction hash
-
-### Scaling to 100+ Currency Pairs
+# Questions & Answers
+### 1. How you would extend the system to support 100+ currency pairs?
+- Normalize via the `currencies` table and reference by code; enrich with type, precision, status; enforce FK constraints; optionally cache.
 #### Currency Model
 - Backed by `currencies` table with primary key `currency` (e.g. "BTC").
 - Attributes: `name`, `precision`, `status`, `currency_type` (fiat/crypto).
@@ -66,19 +58,21 @@ Endpoints:
 - Central `currencies` table ensures consistency and validation.
 - Add caching for frequently accessed currency data.
 
-### Future Work / TODO
+### 2. How are errors communicated?
+- Consistent JSON:API error objects with correct HTTP status;
+- Return consistent structure by implementing a generic helper for generating error json response.
+- Capture exception in generic place to avoid leaking internal exception details.
+- [TODO] Integrate monitoring platform such as Sentry, Bugsnag
+
+### 3. What columns could you add to the accounting models that you think would be helpful?
+- Status: active, lock, closed.
+- Create a native enum at the database level (e.g., PostgreSQL ENUM type) for status to optimize queries, ensure data integrity, and improve performance.
+- Type fund/future, etc
+
+### 4. Future Work / TODO (Any other comments, questions, or thoughts that came up.)
+- Implement JWT authentication, OTP, Passkey, Verification ....
+- User's activities for tracking
 - Add pagination for accounts & transactions.
 - Implement sparse fieldsets & inclusion of related resources.
 - Add rate limiting & API key support (if external use grows).
 - Introduce audit logging for compliance (immutable append-only log).
-- Formalize service layer (transaction lifecycle events, balance projections).
-
-### Questions & Answers
-Q: How do we extend to many currencies?
-A: Normalize via the `currencies` table and reference by code; enrich with type, precision, status; enforce FK constraints; optionally cache.
-
-Q: How are errors communicated?
-A: Consistent JSON:API error objects with correct HTTP status; avoid leaking internal exception details.
-
-Q: What additional columns help accounting integrity?
-A: Status enums, kind (system vs user), audit timestamps, and potentially locking/versioning fields.
