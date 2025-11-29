@@ -10,15 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_11_28_132124) do
+ActiveRecord::Schema[7.0].define(version: 2025_11_29_085227) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  # Custom types defined in this database.
+  # Note that some types may not work with other database engines. Be careful if changing database.
+  create_enum "account_status", ["active", "locked", "closed"]
 
   create_table "accounts", force: :cascade do |t|
     t.string "currency", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.enum "status", default: "active", null: false, enum_type: "account_status"
     t.index ["user_id"], name: "index_accounts_on_user_id"
   end
 
