@@ -2,9 +2,9 @@
 class AccountsController < ApplicationController
   before_action :authenticate_user!
 
-  # TODO: Implement pagination
+  # TODO: Implement pagination and sparse fieldsets
   def index
     accounts = Account.where(user_id: current_user.id)
-    render json: build_success_json(data: accounts), status: :ok
+    render json: accounts, each_serializer: AccountSerializer, status: :ok
   end
 end
