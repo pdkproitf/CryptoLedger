@@ -40,6 +40,10 @@ RSpec.describe 'AccountsController', type: :request do
     end
   end
 
+  before do
+    %w[BTC ETH USD].each { |currency| create(:currency, currency:) }
+  end
+
   describe 'GET /accounts' do
     let(:user) { create(:user) }
     let!(:btc_account) { create(:account, user:, currency: 'BTC') }

@@ -8,10 +8,11 @@
 
 users = FactoryBot.create_list(:user, 10)
 
-currencies = %w[BTC ETH USDC]
+currencies = %w[BTC ETH USDC].map { |currency| FactoryBot.create(:currency, currency:) }
+
 users.each do |user|
   currencies.each do |currency|
-    account = FactoryBot.create(:account, user:, currency:)
+    account = FactoryBot.create(:account, user:, currency: currency.currency)
     FactoryBot.create(:transaction, :deposit, user:, to_account: account, amount: 1000.0)
   end
 end

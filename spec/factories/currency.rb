@@ -2,21 +2,21 @@
 
 FactoryBot.define do
   factory :currency do
-    code { 'BTC' }
+    currency { 'BTC' }
     name { 'Bitcoin' }
     precision { 8 }
     status { 'active' }
     currency_type { 'crypto' }
 
     trait :fiat do
-      code { 'USD' }
+      currency { 'USD' }
       name { 'US Dollar' }
       precision { 2 }
       currency_type { 'fiat' }
     end
 
     trait :ethereum do
-      code { 'ETH' }
+      currency { 'ETH' }
       name { 'Ethereum' }
       precision { 18 }
     end

@@ -39,6 +39,10 @@ RSpec.describe 'TransactionsController', type: :request do
     end
   end
 
+  before do
+    %w[BTC ETH USD].each { |currency| create(:currency, currency:) }
+  end
+
   let(:user) { create(:user) }
   let!(:btc_account) { create(:account, user:, currency: 'BTC') }
   let!(:eth_account) { create(:account, user:, currency: 'ETH') }
