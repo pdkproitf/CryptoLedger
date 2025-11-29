@@ -9,7 +9,6 @@
 # to_account_id    :bigint
 # amount           :decimal(20, 8)   not null
 # exchange_rate    :decimal(20, 8)
-# transaction_hash :string
 # notes            :text
 # created_at       :datetime         not null
 # updated_at       :datetime         not null

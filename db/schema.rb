@@ -44,7 +44,6 @@ ActiveRecord::Schema[7.0].define(version: 2025_11_29_093335) do
     t.bigint "to_account_id"
     t.decimal "amount", precision: 20, scale: 8, null: false
     t.decimal "exchange_rate", precision: 20, scale: 8
-    t.string "transaction_hash"
     t.text "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -38,7 +38,6 @@ class Api::V1::TransactionsController < ApplicationController
       :to_account_id,
       :amount,
       :exchange_rate,
-      :transaction_hash,
       :notes
     )
   end
