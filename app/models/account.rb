@@ -8,8 +8,14 @@ class Account < ApplicationRecord
   validates :currency, presence: true, uniqueness: { scope: :user_id }
 
   def balance
-    incoming = transactions_as_to.sum(:amount)
-    outgoing = transactions_as_from.sum(:amount)
-    incoming - outgoing
+    @balance ||= calculate_balance
+  end
+
+  private
+
+  def calculate_balance
+    total_credits = transactions_as_to.sum(:amount)
+    total_debits = transactions_as_from.sum(:amount)
+    total_credits - total_debits
   end
 end

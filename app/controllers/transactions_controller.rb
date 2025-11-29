@@ -5,17 +5,23 @@ class TransactionsController < ApplicationController
 
   # TODO: Implement pagination
   def index
-    transactions = current_user_transactions
+    transactions = current_user.transactions
     transactions = filter_by_type(transactions) if transaction_type_filter.present?
 
     render json: build_success_json(data: transactions), status: :ok
   end
 
-  private
+  def create
+    result = Factories::CreateTransaction.new(current_user, transaction_params).call
 
-  def current_user_transactions
-    Transaction.where(user_id: current_user.id)
+    if result.success?
+      render json: build_success_json(data: result.data), status: :created
+    else
+      render json: build_error_json(message: result.errors), status: :unprocessable_entity
+    end
   end
+
+  private
 
   def filter_by_type(transactions)
     transactions.where(transaction_type: transaction_type_filter)
@@ -23,5 +29,17 @@ class TransactionsController < ApplicationController
 
   def transaction_type_filter
     @transaction_type_filter ||= params[:type]&.split(',')&.map(&:strip)
+  end
+
+  def transaction_params
+    params.require(:transaction).permit(
+      :transaction_type,
+      :from_account_id,
+      :to_account_id,
+      :amount,
+      :exchange_rate,
+      :transaction_hash,
+      :notes
+    )
   end
 end

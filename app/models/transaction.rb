@@ -25,4 +25,15 @@ class Transaction < ApplicationRecord
 
   validates :transaction_type, presence: true, inclusion: { in: TRANSACTION_TYPES.values }
   validates_presence_of :user_id, :amount, :exchange_rate
+  validates_numericality_of :amount, greater_than: 0
+  validates_numericality_of :exchange_rate, greater_than: 0, allow_nil: true
+  validate :from_and_to_accounts_must_differ
+
+  private
+
+  def from_and_to_accounts_must_differ
+    if from_account_id.present? && to_account_id.present? && from_account_id == to_account_id
+      errors.add(:from_account_id, 'unable to transfer to the same account')
+    end
+  end
 end
