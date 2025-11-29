@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class TransactionsController < ApplicationController
+class Api::V1::TransactionsController < ApplicationController
   before_action :authenticate_user!
 
   # TODO: Implement pagination

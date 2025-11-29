@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  resources :accounts, only: [:index]
-  resources :transactions, only: %i[index create]
+  namespace :api do
+    namespace :v1 do
+      resources :transactions, only: %i[index create]
+      resources :accounts, only: [:index]
+    end
+  end
 end

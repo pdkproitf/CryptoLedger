@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-class AccountsController < ApplicationController
+class Api::V1::AccountsController < ApplicationController
   before_action :authenticate_user!
 
   # TODO: Implement pagination and sparse fieldsets
