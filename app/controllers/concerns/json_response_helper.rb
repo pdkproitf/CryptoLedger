@@ -10,10 +10,12 @@ module JsonResponseHelper
 
   def build_error_json(message: nil, meta: {})
     {
-      errors: {
-        detail: message,
-        meta: meta
-      }
+      errors: [
+        {
+          detail: message,
+          meta: meta
+        }
+      ]
     }
   end
 end

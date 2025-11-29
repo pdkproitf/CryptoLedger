@@ -33,7 +33,7 @@ RSpec.describe 'AccountsController', type: :request do
     it "returns #{status} with error message" do
       expect(response).to have_http_status(status)
       json_response = JSON.parse(response.body)
-      errors_detail = json_response['errors']['detail']
+      errors_detail = json_response['errors'].first['detail']
 
       error_text = errors_detail.is_a?(Array) ? errors_detail.join(' ') : errors_detail
       expect(error_text).to match(/#{error}/)
