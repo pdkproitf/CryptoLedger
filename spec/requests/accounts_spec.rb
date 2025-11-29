@@ -47,7 +47,7 @@ RSpec.describe 'AccountsController', type: :request do
     let!(:usd_account) { create(:account, user:, currency: 'USD') }
 
     context 'when user is authenticated' do
-      before { get '/accounts', headers: { 'user-id' => user.id } }
+      before { get '/api/v1/accounts', headers: { 'user-id' => user.id } }
 
       it_behaves_like 'returns success with accounts', 3
       it_behaves_like 'includes account attributes', -> { [btc_account, eth_account, usd_account] }
@@ -57,7 +57,7 @@ RSpec.describe 'AccountsController', type: :request do
       let(:new_user) { create(:user, email: 'newuser@example.com') }
 
       before do
-        get '/accounts', headers: { 'user-id' => new_user.id }
+        get '/api/v1/accounts', headers: { 'user-id' => new_user.id }
       end
 
       it_behaves_like 'returns success with accounts', 0
@@ -69,7 +69,7 @@ RSpec.describe 'AccountsController', type: :request do
     end
 
     context 'when user is not authenticated' do
-      before { get '/accounts' }
+      before { get '/api/v1/accounts' }
 
       it_behaves_like 'returns failed with error', :unauthorized, 'Unauthorized'
     end

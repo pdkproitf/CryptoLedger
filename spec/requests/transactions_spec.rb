@@ -52,7 +52,7 @@ RSpec.describe 'TransactionsController', type: :request do
     let!(:other_user_transaction) { create(:transaction, :deposit, user: other_user, to_account: btc_account) }
 
     context 'when user is authenticated' do
-      before { get '/transactions', headers: { 'user-id' => user.id } }
+      before { get '/api/v1/transactions', headers: { 'user-id' => user.id } }
 
       it_behaves_like 'returns success with number of transactions', 2
       it_behaves_like 'returns success with transaction details', :ok, -> { user.transactions.first.attributes }
@@ -69,14 +69,14 @@ RSpec.describe 'TransactionsController', type: :request do
         new_user = create(:user, email: 'newuser@example.com')
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(new_user)
 
-        get '/transactions', headers: { 'user-id' => new_user.id }
+        get '/api/v1/transactions', headers: { 'user-id' => new_user.id }
 
         json_response = JSON.parse(response.body)
         expect(json_response['data']).to eq([])
       end
 
       it 'filters transactions by transaction_type' do
-        get '/transactions', params: { type: 'deposit' }, headers: { 'user-id' => user.id }
+        get '/api/v1/transactions', params: { type: 'deposit' }, headers: { 'user-id' => user.id }
 
         json_response = JSON.parse(response.body)
         expect(json_response['data'].size).to eq(1)
@@ -88,7 +88,7 @@ RSpec.describe 'TransactionsController', type: :request do
 
     context 'when user is not authenticated' do
       it 'returns unauthorized error' do
-        get '/transactions'
+        get '/api/v1/transactions'
 
         expect(response).to have_http_status(:unauthorized)
         json_response = JSON.parse(response.body)
@@ -123,7 +123,7 @@ RSpec.describe 'TransactionsController', type: :request do
         context 'when invalid params' do
           let(:amount) { -100.0 }
 
-          before { post '/transactions', params:, headers: { 'user-id' => user.id } }
+          before { post '/api/v1/transactions', params:, headers: { 'user-id' => user.id } }
 
           it_behaves_like 'returns failed with error', :unprocessable_entity, 'Amount must be greater than 0'
         end
@@ -131,7 +131,7 @@ RSpec.describe 'TransactionsController', type: :request do
         context 'when valid params' do
           let(:amount) { 1000.0 }
 
-          before { post '/transactions', params:, headers: { 'user-id' => user.id } }
+          before { post '/api/v1/transactions', params:, headers: { 'user-id' => user.id } }
 
           it_behaves_like 'returns success with transaction details', :created, -> { params[:transaction] }
         end
@@ -144,7 +144,7 @@ RSpec.describe 'TransactionsController', type: :request do
           context 'when insufficient balance in from_account' do
             let(:amount) { from_account.balance + 1_000.0 }
 
-            before { post '/transactions', params:, headers: { 'user-id' => user.id } }
+            before { post '/api/v1/transactions', params:, headers: { 'user-id' => user.id } }
 
             it_behaves_like 'returns failed with error', :unprocessable_entity, 'Insufficient balance'
           end
@@ -152,7 +152,7 @@ RSpec.describe 'TransactionsController', type: :request do
           context 'when from_account does not belong to user' do
             let(:from_account) { create(:account, user: other_user, currency: 'BTC') }
 
-            before { post '/transactions', params:, headers: { 'user-id' => user.id } }
+            before { post '/api/v1/transactions', params:, headers: { 'user-id' => user.id } }
 
             it_behaves_like 'returns failed with error', :unprocessable_entity, 'Invalid from account'
           end
@@ -163,7 +163,7 @@ RSpec.describe 'TransactionsController', type: :request do
 
           before do
             create(:transaction, :deposit, user:, to_account: from_account, amount: amount + 1000.0)
-            post '/transactions', params:, headers: { 'user-id' => user.id }
+            post '/api/v1/transactions', params:, headers: { 'user-id' => user.id }
           end
 
           it_behaves_like 'returns success with transaction details', :created, -> { params[:transaction] }
@@ -177,7 +177,7 @@ RSpec.describe 'TransactionsController', type: :request do
           context 'when insufficient balance in from_account' do
             let(:amount) { from_account.balance + 500.0 }
 
-            before { post '/transactions', params:, headers: { 'user-id' => user.id } }
+            before { post '/api/v1/transactions', params:, headers: { 'user-id' => user.id } }
 
             it_behaves_like 'returns failed with error', :unprocessable_entity, 'Insufficient balance'
           end
@@ -185,7 +185,7 @@ RSpec.describe 'TransactionsController', type: :request do
           context 'when from_account does not belong to user' do
             let(:from_account) { create(:account, user: other_user, currency: 'BTC') }
 
-            before { post '/transactions', params:, headers: { 'user-id' => user.id } }
+            before { post '/api/v1/transactions', params:, headers: { 'user-id' => user.id } }
 
             it_behaves_like 'returns failed with error', :unprocessable_entity, 'Invalid from account'
           end
@@ -196,7 +196,7 @@ RSpec.describe 'TransactionsController', type: :request do
 
           before do
             create(:transaction, :deposit, user:, to_account: from_account, amount: amount + 500.0)
-            post '/transactions', params:, headers: { 'user-id' => user.id }
+            post '/api/v1/transactions', params:, headers: { 'user-id' => user.id }
           end
 
           it_behaves_like 'returns success with transaction details', :created, -> { params[:transaction] }
@@ -205,7 +205,7 @@ RSpec.describe 'TransactionsController', type: :request do
     end
 
     context 'when user is not authenticated' do
-      before { post '/transactions', params: {} }
+      before { post '/api/v1/transactions', params: {} }
 
       it_behaves_like 'returns failed with error', :unauthorized, 'Unauthorized'
     end
