@@ -7,7 +7,6 @@ class CreateTransactions < ActiveRecord::Migration[7.0]
       t.references :to_account, foreign_key: { to_table: :accounts }
       t.decimal :amount, null: false, precision: 20, scale: 8
       t.decimal :exchange_rate, precision: 20, scale: 8
-      t.string :transaction_hash
       t.text :notes
 
       t.timestamps
