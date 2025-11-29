@@ -16,7 +16,7 @@ module Transactions
       ServiceResult.new(data: transactions)
     rescue StandardError => e
       # notify monitoring platform here, e.g., Sentry, Bugsnag, etc.
-      ServiceResult.new(success: false, errors: [e.message])
+      ServiceResult.new(errors: [e.message])
     end
 
     private
