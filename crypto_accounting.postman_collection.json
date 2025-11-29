@@ -1,0 +1,839 @@
+{
+	"info": {
+		"_postman_id": "bcf59646-dc14-48f3-928b-e2ca0ad6915f",
+		"name": "crypto_accounting",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2275803",
+		"_collection_link": "https://utrendvn.postman.co/workspace/turnkey~ef02a7fc-dd41-4a58-9473-3ac9b56ffb25/collection/2275803-bcf59646-dc14-48f3-928b-e2ca0ad6915f?action=share&source=collection_link&creator=2275803"
+	},
+	"item": [
+		{
+			"name": "Account",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "user-id",
+						"value": "1",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/api/v1/accounts",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"accounts"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "user-id",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/api/v1/accounts",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"accounts"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"595b0d2ee81d191911aaabb9df86979c\""
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=0, private, must-revalidate"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "93344304-8e3f-4727-b9d2-810333f5ed61"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.062470"
+						},
+						{
+							"key": "Server-Timing",
+							"value": "start_processing.action_controller;dur=0.18, sql.active_record;dur=26.34, instantiation.active_record;dur=4.24, render.active_model_serializers;dur=24.47, process_action.action_controller;dur=56.94"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": [\n        {\n            \"id\": \"1\",\n            \"type\": \"accounts\",\n            \"attributes\": {\n                \"user-id\": 1,\n                \"currency\": \"BTC\",\n                \"balance\": \"998.0\",\n                \"created-at\": \"2025-11-29T07:27:55.202Z\",\n                \"updated-at\": \"2025-11-29T07:27:55.202Z\"\n            }\n        },\n        {\n            \"id\": \"2\",\n            \"type\": \"accounts\",\n            \"attributes\": {\n                \"user-id\": 1,\n                \"currency\": \"ETH\",\n                \"balance\": \"1002.0\",\n                \"created-at\": \"2025-11-29T07:27:55.234Z\",\n                \"updated-at\": \"2025-11-29T07:27:55.234Z\"\n            }\n        },\n        {\n            \"id\": \"3\",\n            \"type\": \"accounts\",\n            \"attributes\": {\n                \"user-id\": 1,\n                \"currency\": \"USDC\",\n                \"balance\": \"1000.0\",\n                \"created-at\": \"2025-11-29T07:27:55.245Z\",\n                \"updated-at\": \"2025-11-29T07:27:55.245Z\"\n            }\n        }\n    ]\n}"
+				},
+				{
+					"name": "error",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "user-id",
+								"value": "1",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/api/v1/accounts",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"accounts"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "98633fa6-b114-4563-a743-ab75be1a6219"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.019628"
+						},
+						{
+							"key": "Server-Timing",
+							"value": "start_processing.action_controller;dur=0.21, sql.active_record;dur=2.83, render.active_model_serializers;dur=0.35, halted_callback.action_controller;dur=0.08, process_action.action_controller;dur=12.70"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"errors\": {\n        \"detail\": \"Unauthorized\",\n        \"meta\": {}\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Transaction",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "user-id",
+						"value": "1",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/api/v1/transactions?filters[currency]=BTC",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"transactions"
+					],
+					"query": [
+						{
+							"key": "filters[currency]",
+							"value": "BTC"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "user-id",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/api/v1/transactions",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"transactions"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"3a55d6e75fbb1bcf801a27a3859ce48c\""
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=0, private, must-revalidate"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "f4084fbe-1085-49f3-aca1-cdd86b2fb540"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.159782"
+						},
+						{
+							"key": "Server-Timing",
+							"value": "start_processing.action_controller;dur=0.12, sql.active_record;dur=26.00, instantiation.active_record;dur=27.18, render.active_model_serializers;dur=3.51, process_action.action_controller;dur=85.17"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": [\n        {\n            \"id\": \"1\",\n            \"type\": \"transactions\",\n            \"attributes\": {\n                \"transaction-type\": \"deposit\",\n                \"from-account-id\": null,\n                \"to-account-id\": 1,\n                \"amount\": \"1000.0\",\n                \"exchange-rate\": \"1.0\",\n                \"transaction-hash\": null,\n                \"notes\": null,\n                \"user-id\": 1,\n                \"created-at\": \"2025-11-29T07:27:55.225Z\",\n                \"updated-at\": \"2025-11-29T07:27:55.225Z\"\n            }\n        },\n        {\n            \"id\": \"2\",\n            \"type\": \"transactions\",\n            \"attributes\": {\n                \"transaction-type\": \"deposit\",\n                \"from-account-id\": null,\n                \"to-account-id\": 2,\n                \"amount\": \"1000.0\",\n                \"exchange-rate\": \"1.0\",\n                \"transaction-hash\": null,\n                \"notes\": null,\n                \"user-id\": 1,\n                \"created-at\": \"2025-11-29T07:27:55.239Z\",\n                \"updated-at\": \"2025-11-29T07:27:55.239Z\"\n            }\n        },\n        {\n            \"id\": \"3\",\n            \"type\": \"transactions\",\n            \"attributes\": {\n                \"transaction-type\": \"deposit\",\n                \"from-account-id\": null,\n                \"to-account-id\": 3,\n                \"amount\": \"1000.0\",\n                \"exchange-rate\": \"1.0\",\n                \"transaction-hash\": null,\n                \"notes\": null,\n                \"user-id\": 1,\n                \"created-at\": \"2025-11-29T07:27:55.249Z\",\n                \"updated-at\": \"2025-11-29T07:27:55.249Z\"\n            }\n        },\n        {\n            \"id\": \"31\",\n            \"type\": \"transactions\",\n            \"attributes\": {\n                \"transaction-type\": \"deposit\",\n                \"from-account-id\": 1,\n                \"to-account-id\": 2,\n                \"amount\": \"1.0\",\n                \"exchange-rate\": \"1.0\",\n                \"transaction-hash\": null,\n                \"notes\": \"Test deposit\",\n                \"user-id\": 1,\n                \"created-at\": \"2025-11-29T08:20:39.657Z\",\n                \"updated-at\": \"2025-11-29T08:20:39.657Z\"\n            }\n        },\n        {\n            \"id\": \"32\",\n            \"type\": \"transactions\",\n            \"attributes\": {\n                \"transaction-type\": \"deposit\",\n                \"from-account-id\": 1,\n                \"to-account-id\": 2,\n                \"amount\": \"1.0\",\n                \"exchange-rate\": \"1.0\",\n                \"transaction-hash\": null,\n                \"notes\": \"Test deposit\",\n                \"user-id\": 1,\n                \"created-at\": \"2025-11-29T08:24:25.841Z\",\n                \"updated-at\": \"2025-11-29T08:24:25.841Z\"\n            }\n        }\n    ]\n}"
+				},
+				{
+					"name": "filter by type",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "user-id",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/api/v1/transactions?filters[type]=deposit",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"transactions"
+							],
+							"query": [
+								{
+									"key": "filters[type]",
+									"value": "deposit"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"e8c8b57e50346dbdf11569bb3d5301e1\""
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=0, private, must-revalidate"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "a7da6c62-ee2b-47cf-ad97-5685563daae4"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "5.374687"
+						},
+						{
+							"key": "Server-Timing",
+							"value": "start_processing.action_controller;dur=0.08, sql.active_record;dur=18.39, instantiation.active_record;dur=15.04, render.active_model_serializers;dur=1.84, process_action.action_controller;dur=5257.88"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": [\n        {\n            \"id\": \"1\",\n            \"type\": \"transactions\",\n            \"attributes\": {\n                \"transaction-type\": \"deposit\",\n                \"from-account-id\": null,\n                \"to-account-id\": 1,\n                \"amount\": \"1000.0\",\n                \"exchange-rate\": \"1.0\",\n                \"notes\": null,\n                \"user-id\": 1,\n                \"created-at\": \"2025-11-29T10:00:43.404Z\",\n                \"updated-at\": \"2025-11-29T10:00:43.404Z\"\n            }\n        },\n        {\n            \"id\": \"2\",\n            \"type\": \"transactions\",\n            \"attributes\": {\n                \"transaction-type\": \"deposit\",\n                \"from-account-id\": null,\n                \"to-account-id\": 2,\n                \"amount\": \"1000.0\",\n                \"exchange-rate\": \"1.0\",\n                \"notes\": null,\n                \"user-id\": 1,\n                \"created-at\": \"2025-11-29T10:00:43.414Z\",\n                \"updated-at\": \"2025-11-29T10:00:43.414Z\"\n            }\n        },\n        {\n            \"id\": \"3\",\n            \"type\": \"transactions\",\n            \"attributes\": {\n                \"transaction-type\": \"deposit\",\n                \"from-account-id\": null,\n                \"to-account-id\": 3,\n                \"amount\": \"1000.0\",\n                \"exchange-rate\": \"1.0\",\n                \"notes\": null,\n                \"user-id\": 1,\n                \"created-at\": \"2025-11-29T10:00:43.423Z\",\n                \"updated-at\": \"2025-11-29T10:00:43.423Z\"\n            }\n        }\n    ]\n}"
+				},
+				{
+					"name": "filter by currency",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "user-id",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/api/v1/transactions?filters[currency]=BTC",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"transactions"
+							],
+							"query": [
+								{
+									"key": "filters[currency]",
+									"value": "BTC"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"89e2066dbff9fb1c64f8462a782262f0\""
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=0, private, must-revalidate"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "71fa8958-7cf9-461a-b868-6ceff8c977a9"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.130522"
+						},
+						{
+							"key": "Server-Timing",
+							"value": "start_processing.action_controller;dur=0.10, sql.active_record;dur=21.26, instantiation.active_record;dur=8.76, render.active_model_serializers;dur=5.77, process_action.action_controller;dur=45.86"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": [\n        {\n            \"id\": \"31\",\n            \"type\": \"transactions\",\n            \"attributes\": {\n                \"transaction-type\": \"trade\",\n                \"from-account-id\": 1,\n                \"to-account-id\": 2,\n                \"amount\": \"1.0\",\n                \"exchange-rate\": \"111.0\",\n                \"notes\": \"Test deposit\",\n                \"user-id\": 1,\n                \"created-at\": \"2025-11-29T10:02:20.998Z\",\n                \"updated-at\": \"2025-11-29T10:02:20.998Z\",\n                \"from-currency\": \"BTC\",\n                \"to-currency\": \"ETH\"\n            }\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Transaction",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "user-id",
+						"value": "1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"transaction\": {\n          \"transaction_type\": \"trade\",\n          \"amount\": 1,\n          \"exchange_rate\": 111,\n          \"from_account_id\":1,\n          \"to_account_id\": 2,\n          \"notes\": \"Test deposit\"\n        }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/v1/transactions",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"transactions"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "user-id",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"transaction\": {\n          \"transaction_type\": \"deposit\",\n          \"amount\": 1,\n          \"exchange_rate\": 1,\n          \"from_account_id\":1,\n          \"to_account_id\": 2,\n          \"notes\": \"Test deposit\"\n        }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/transactions",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"transactions"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"afb055c8a099e8106f6a2bfcd48f7ea4\""
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=0, private, must-revalidate"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "7529b6c6-638f-4d17-9b6a-7ffedcdba13d"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.030829"
+						},
+						{
+							"key": "Server-Timing",
+							"value": "start_processing.action_controller;dur=0.19, sql.active_record;dur=13.62, instantiation.active_record;dur=0.41, render.active_model_serializers;dur=1.43, process_action.action_controller;dur=26.42"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"id\": \"33\",\n        \"type\": \"transactions\",\n        \"attributes\": {\n            \"transaction-type\": \"deposit\",\n            \"from-account-id\": 1,\n            \"to-account-id\": 2,\n            \"amount\": \"1.0\",\n            \"exchange-rate\": \"1.0\",\n            \"transaction-hash\": null,\n            \"notes\": \"Test deposit\",\n            \"user-id\": 1,\n            \"created-at\": \"2025-11-29T08:37:02.274Z\",\n            \"updated-at\": \"2025-11-29T08:37:02.274Z\"\n        }\n    }\n}"
+				},
+				{
+					"name": "error",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "user-id",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"transaction\": {\n          \"transaction_type\": \"debit\",\n          \"amount\": 100011,\n          \"exchange_rate\": 1,\n          \"from_account_id\":1,\n          \"to_account_id\": 2,\n          \"notes\": \"Test deposit\"\n        }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/transactions",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"transactions"
+							]
+						}
+					},
+					"status": "Unprocessable Entity",
+					"code": 422,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "2053bcf2-fda7-4a07-80fb-5da4c5e20e54"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.114731"
+						},
+						{
+							"key": "Server-Timing",
+							"value": "start_processing.action_controller;dur=0.09, sql.active_record;dur=18.41, instantiation.active_record;dur=7.47, render.active_model_serializers;dur=0.19, process_action.action_controller;dur=31.19"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"errors\": {\n        \"detail\": [\n            \"'debit' is not a valid transaction_type\"\n        ],\n        \"meta\": {}\n    }\n}"
+				},
+				{
+					"name": "error",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "user-id",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"transaction\": {\n          \"transaction_type\": \"trade\",\n          \"amount\": 100011,\n          \"exchange_rate\": 1,\n          \"from_account_id\":1,\n          \"to_account_id\": 2,\n          \"notes\": \"Test deposit\"\n        }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/transactions",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"transactions"
+							]
+						}
+					},
+					"status": "Unprocessable Entity",
+					"code": 422,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "e1f73564-8596-4c0b-834a-8aeeb908d893"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.021197"
+						},
+						{
+							"key": "Server-Timing",
+							"value": "start_processing.action_controller;dur=0.32, sql.active_record;dur=9.37, instantiation.active_record;dur=0.21, render.active_model_serializers;dur=0.27, process_action.action_controller;dur=16.48"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"errors\": {\n        \"detail\": [\n            \"Insufficient balance in from account. Available: -3.0, Required: 100011\"\n        ],\n        \"meta\": {}\n    }\n}"
+				}
+			]
+		}
+	]
+}
