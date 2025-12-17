@@ -1,4 +1,4 @@
-# Crypto Accounting API
+# CryptoLedger API
 
 A Rails 7, API-only service for managing user accounts and transactions across multiple currencies (fiat and crypto). It exposes endpoints to list accounts, create and list transactions, and provides a clean, extensible design suitable for real-world growth.
 
