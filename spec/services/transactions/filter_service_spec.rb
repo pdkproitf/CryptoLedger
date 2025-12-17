@@ -121,7 +121,7 @@ RSpec.describe Transactions::FilterService do
 
     context 'error handling' do
       it 'returns error result when exception occurs' do
-        allow(user).to receive(:transactions).and_raise(StandardError.new('Database error'))
+        allow(user).to receive(:transactions).and_raise(ActiveRecord::StatementInvalid.new('Database error'))
 
         result = described_class.new(user, {}).call
         expect(result.success?).to be false

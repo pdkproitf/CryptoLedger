@@ -14,8 +14,8 @@ module Transactions
       transactions = filter_by_type(transactions) if type_filter.present?
       transactions = filter_by_currency(transactions) if currency_filter.present?
       ServiceResult.new(data: transactions)
-    rescue StandardError => e
-      # notify monitoring platform here, e.g., Sentry, Bugsnag, etc.
+    rescue ArgumentError, ActiveRecord::StatementInvalid => e
+      # log or notify here
       ServiceResult.new(errors: [e.message])
     end
 
