@@ -32,7 +32,7 @@ class Transaction < ApplicationRecord
 
   def from_and_to_accounts_must_differ
     if from_account_id.present? && to_account_id.present? && from_account_id == to_account_id
-      errors.add(:from_account_id, 'unable to transfer to the same account')
+      errors.add(:from_account_id, I18n.t('errors.transaction.same_account'))
     end
   end
 end

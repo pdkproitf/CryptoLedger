@@ -37,13 +37,13 @@ module Factories
     end
 
     def validate_from_account_ownership(account)
-      @errors << 'Invalid from account!' unless account
+      @errors << I18n.t('errors.transaction.invalid_from_account') unless account
     end
 
     def validate_sufficient_balance(account)
       return if account.balance >= params[:amount].to_f
 
-      @errors << "Insufficient balance in from account. Available: #{account.balance}, Required: #{params[:amount]}"
+      @errors << I18n.t('errors.transaction.insufficient_balance', available: account.balance, required: params[:amount])
     end
 
     def build_transaction

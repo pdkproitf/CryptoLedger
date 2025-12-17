@@ -31,3 +31,9 @@
 
 en:
   hello: "Hello world"
+  errors:
+    unauthorized: "Unauthorized"
+    transaction:
+      same_account: "Unable to transfer to the same account"
+      invalid_from_account: "Invalid from account"
+      insufficient_balance: "Insufficient balance in from account. Available: %{available}, Required: %{required}"
